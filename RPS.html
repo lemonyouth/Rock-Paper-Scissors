@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    
+    function getComputerChoice() {
+      const strings = ['rock','paper','scissors'];
+      const randomIndex = Math.floor(Math.random()*strings.length);
+      return strings[randomIndex];
+    }
+    function playRound(playerSelection, computerSelection) {
+      player = playerSelection.toLowerCase();
+      if(player == computerSelection) return 0;
+      if(player =='rock'){
+        if(computerSelection == 'paper') return -1;
+        else return 1;
+      }
+      if(player == 'scissors'){
+        if(computerSelection == 'paper') return 1;
+        else return -1;
+      }
+      if(player == 'rock'){
+        if(computerSelection == 'paper') return -1;
+        else return 1;
+      }
+    }
+    function game(){
+      let count = 0;
+      for(let i = 0; i < 5;i++){
+        player = prompt('please input');
+        computerSelection = getComputerChoice;
+        if(playRound == 1) count++;
+      }
+      if(count > 2) return 'you win!';
+      else return 'you lose';
+    }
+    
+    console.log(game());
+    
+  </script>
+</body>
+</html>
