@@ -1,47 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
 </head>
 <body>
+  
+
+  <button class="rock">rock</button>
+  <button id="paper">paper</button>
+  <button id="scissors">scissors</button>
+  <div></div>
+
   <script>
-    // Your JavaScript goes here!
-    
+    let playerSelection;
+    let count = 0;
+    let winnumber = 0;
+
     function getComputerChoice() {
-      const strings = ['rock','paper','scissors'];
-      const randomIndex = Math.floor(Math.random()*strings.length);
+      const strings = ['rock', 'paper', 'scissors'];
+      const randomIndex = Math.floor(Math.random() * strings.length);
       return strings[randomIndex];
     }
+
     function playRound(playerSelection, computerSelection) {
       player = playerSelection.toLowerCase();
-      if(player == computerSelection) return 0;
-      if(player =='rock'){
-        if(computerSelection == 'paper') return -1;
+      if (player == computerSelection) return -1;
+      if (player == 'rock') {
+        if (computerSelection == 'paper') return 0;
         else return 1;
       }
-      if(player == 'scissors'){
-        if(computerSelection == 'paper') return 1;
-        else return -1;
+      if (player == 'scissors') {
+        if (computerSelection == 'paper') return 1;
+        else return 0;
       }
-      if(player == 'rock'){
-        if(computerSelection == 'paper') return -1;
-        else return 1;
+      if (player == 'paper') {
+        if (computerSelection == 'rock') return 1;
+        else return 0;
       }
     }
-    function game(){
-      let count = 0;
-      for(let i = 0; i < 5;i++){
-        player = prompt('please input');
-        computerSelection = getComputerChoice;
-        if(playRound == 1) count++;
-      }
-      if(count > 2) return 'you win!';
-      else return 'you lose';
+
+
+    function decideWinner(count, winnumber) {
+      if (count == 5 && winnumber >= 3) return true;
+      return false;
     }
-    
-    console.log(game());
-    
+
+    let brock = document.querySelector('.rock');
+    let bpaper = document.querySelector("#paper");
+    let bscissors = document.querySelector("#scissors");
+    let div = document.querySelector("div");
+    console.log(brock);
+
+    brock.addEventListener('click', function () {
+      playerSelection = 'rock';
+      winnumber += playRound(playerSelection, getComputerChoice());
+      count++;
+      if (decideWinner(count, winnumber)) div.textContent = "you win!";
+      else if (count<5) div.textContent = count;
+      else div.textContent = "you lose";
+      if(count == 5) count = 0;
+    })
+
+    bpaper.addEventListener('click', function () {
+      playerSelection = 'paper';
+      winnumber += playRound(playerSelection, getComputerChoice());
+      count++;
+      if (decideWinner(count, winnumber)) div.textContent = "you win!";
+      else if (count<5) div.textContent = count;
+      else div.textContent = "you lose";
+      if(count == 5) count = 0;
+    })
+
+    bscissors.addEventListener('click', function () {
+      playerSelection = 'scissors';
+      winnumber += playRound(playerSelection, getComputerChoice());
+      count++;
+      if (decideWinner(count, winnumber)) div.textContent = "you win!";
+      else if (count<5) div.textContent = count;
+      else div.textContent = "you lose";
+      if(count == 5) count = 0;
+    })
+    console.log(count);
+    div.textContent = count;
+
   </script>
 </body>
 </html>
